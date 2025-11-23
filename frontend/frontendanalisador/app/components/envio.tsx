@@ -45,10 +45,12 @@ export default function Envio() {
             <form onSubmit={handleSubmit}>
                 <input type="file" accept=".pdf" onChange={handleFileChange} />
                 <button type="submit">Enviar PDF</button>
-                <button type="button" onClick={reactToPrintFn}>Gerar PDF</button>
+                
             </form>
+            <button type="button" onClick={reactToPrintFn}>Gerar PDF</button>
             {htmlContent && <div dangerouslySetInnerHTML={{ __html: htmlContent }} ref={contentRef} />}
         </div>
+
     );
     
 

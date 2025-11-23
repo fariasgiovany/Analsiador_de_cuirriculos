@@ -1,24 +1,25 @@
-networks:
-  caddy:
-    driver: bridge
 
 services:
-  teste:
-    container_name: caddy
-    restart: unless-stopped
-    image: caddy:latest
-    ports:
-    - "80:80"
-    - "443:443"
-    volumes:
-    - ./Caddyfile:/etc/caddy/Caddyfile
-    - caddy_data:/data
-    - caddy_config:/config
-    - ./site:/usr/share/caddy
-    networks:
-      - caddy
+    backend:
+        build: ./backend
+        container_name: backend
+        ports:
+            - "8000:8000"
+        restart: unless-stopped
+        networks:
+            - app_network
 
+    frontend:
+        build: ./frontend/frontendanalisador    
+        container_name: frontend
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+        restart: unless-stopped
+        networks:
+            - app_network
 
-volumes:
-  caddy_data:
-  caddy_config:
+networks:
+    app_network:
+        driver: bridge
