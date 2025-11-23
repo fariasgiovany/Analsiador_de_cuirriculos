@@ -3,7 +3,7 @@ import { JetBrains_Mono } from 'next/font/google';
 import { headers } from 'next/headers';
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import ReactPDF from '@react-pdf/renderer'
+
 
 export async function POST(request: NextRequest) {
     const form = await request.formData();

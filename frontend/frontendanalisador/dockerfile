@@ -1,0 +1,13 @@
+FROM node:25.2-slim
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+RUN npm install --save react-to-print
+COPY . .
+EXPOSE 3000
+RUN npm run build
+CMD ["npm", "run" ,"start"]
+
+#para build "docker build -t  frontendanalisador ."
+#run "sudo docker run --rm -p 3000:3000 --name frontendanalisador frontendanalisador"

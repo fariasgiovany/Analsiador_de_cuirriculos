@@ -1,0 +1,24 @@
+networks:
+  caddy:
+    driver: bridge
+
+services:
+  teste:
+    container_name: caddy
+    restart: unless-stopped
+    image: caddy:latest
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./Caddyfile:/etc/caddy/Caddyfile
+    - caddy_data:/data
+    - caddy_config:/config
+    - ./site:/usr/share/caddy
+    networks:
+      - caddy
+
+
+volumes:
+  caddy_data:
+  caddy_config:
